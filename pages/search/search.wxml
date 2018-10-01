@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<view class="container">
+
+ <!-- 搜索分类 -->
+   <view class="u-search-tool">
+        <view class="u-search-bar">
+            <icon class="icon" type="search" size="12"></icon>
+            <input placeholder="搜索优惠券" focus="true" bindconfirm="bindconfirm" bindinput="searchInput" value="{{keyword}}" />
+        </view>
+        <view bind:tap="onSearch" class="u-search-cancel">搜索</view>
+    </view>
+
+  <view  class="box-item">
+    <block wx:for="{{list}}"  wx:key="index">
+        <item item="{{item}}"></item>
+    </block>
+  </view>
+
+</view>
+
+

@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+   <view class="coupon-detail">
+        <text class="coupon-type">{{couponObj.couponItem}}</text>
+        <text class="coupon-title">{{couponObj.couponType}}</text>
+        <view class="coupon-line">
+         <text></text>
+        </view>
+        <image class="coupon-image" src="/assets/icons/add_coupon.png" mode="widthFix"></image>
+        
+   </view>
+ 
+</view>
+
+

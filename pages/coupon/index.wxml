@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container">
+   <view class="coupon-detail">
+        <text class="coupon-type">{{couponObj.couponItem}}</text>
+        <text class="coupon-title">{{couponObj.couponType}}</text>
+        <view class="get-coupon" wx:if="{{!useBtn && couponObj.id}}" bindtap="getCoupon">领取</view>
+        <view class="use-coupon" bindtap="gotoCode"  wx:if="{{useBtn}}">立即使用</view>
+        <view class="coupon-use-time">
+           <text>可用时间：</text>
+           <text class="coupon-use-time-desc">
+              {{couponObj.usefulStartTime}} - {{couponObj.usefulEndTime}}
+           </text>
+        </view>
+        <image class="coupon-image" wx:if="{{couponObj.couponImgURL}}" src="https://z.mln.ren/upload/BigImage{{couponObj.couponImgURL}}" mode="widthFix"></image>
+        <!--view class="coupon-detail-text" bindtap="gotoDetail">
+            <text>查看此优惠券详情</text>
+            <view class="iconfont icon-left"></view>
+        </view-->
+   </view>
+ 
+</view>
+
+<dialog bind:info="updateInfo" hideDialog="{{hideDialog}}"></dialog>
+
+

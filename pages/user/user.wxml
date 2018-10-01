@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<view class="container">
+   <union-swiper-tab tabs="{{tabs}}" bind:tabchange="handleTabChange" >
+        <view wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="tabIndex" wx:key="{{tab.id}}" slot="tab-item-{{tab.id}}" class="box-item">
+            <!--view wx:for="{{tab.data}}" wx:key="index" class="detail-wrap" bindtap="onTeamMemberDetailTap" data-item="{{item}}">
+                  {{item.id}}
+                  <item item="{{item}}"></item>
+            </view-->
+            <!--template  wx:for="{{tab.data}}" wx:key="{{index}}" is="couponItem" data="{{item}}"></template-->
+           <block wx:for="{{tab.data}}"  wx:key="index">
+              <item item="{{item.coupon}}" no-link="{{tab.status === 0 ? false : true}}" goto-use="true"></item>
+            </block>
+        </view>      
+    </union-swiper-tab>
+
+    <view class="add-coupon" bindtap="gotoAddCoupon">
+      <image src="/assets/icons/add_coupon.png" mode='widthFix'></image>
+    </view>
+</view>
+
+<dialog bind:info="updateInfo" hideDialog="{{hideDialog}}"></dialog>
+
+

@@ -1,0 +1,38 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/user/user",
+    "pages/search/search",
+    "pages/coupon/index",
+    "pages/coupon/code/code",
+    "pages/coupon/add/add",
+    "pages/coupon/verification/verification",
+    "pages/coupon/verification-way/verification-way",
+    "pages/coupon/detail/detail"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#fe2b60",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "集市",
+        "iconPath": "assets/icons/coupon.png",
+        "selectedIconPath": "assets/icons/coupon_active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "assets/icons/user.png",
+        "selectedIconPath": "assets/icons/user_active.png"
+      }
+    ]
+  }
+}

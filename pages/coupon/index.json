@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "优惠券详情",
+  "backgroundColor": "#fd8b98",
+  "dialog": "../../../components/dialog/dialog"
+}

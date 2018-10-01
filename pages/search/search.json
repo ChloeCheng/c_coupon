@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "搜索优惠券",
+  "usingComponents": {
+    "item": "../../components/item/item"
+  }
+}
