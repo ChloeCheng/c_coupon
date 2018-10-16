@@ -18,6 +18,10 @@ Component({
             type: Boolean,
             value: false
         },
+        listId: {
+            type: String,
+            value: ''
+        },
     },
 
     /**
@@ -63,12 +67,24 @@ Component({
             this.triggerEvent('input', {index, tab});
         },
         gotoDetail(e){
-            console.log(this.data.noLink)
+            // console.log(this.data.noLink)
             if(this.data.noLink) {
                 return
             }
             const {currentTarget:{dataset: {item}}} = e;
+            
             router.routeTo(`/pages/coupon/index?id=${item.id}&use=${this.data.gotoUse}`);
+
+            
+        },
+        gotoUse(e){
+        
+            if(this.data.noLink) {
+                return
+            }
+            const {currentTarget:{dataset: {item}}} = e;
+            router.routeTo(`/pages/coupon/code/code?id=${item.id}&use=${this.data.gotoUse}`);
+
         }
     }
 })

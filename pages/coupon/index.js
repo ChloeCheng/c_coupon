@@ -7,6 +7,7 @@ import {parseWeChatQuery} from '../../common/utils.js';
 import PageEventFire from '../../common/pageEventFire.js';
 const storage = require('../../common/storage.js')
 import {autoLogin} from '../../common/login.js';
+const formatTime = require('../../common/formatTime.js');
 Page({
 
     /**
@@ -15,38 +16,8 @@ Page({
     data: {
        useBtn: false, //立即使用按钮
        couponObj: {},   // 券详情
-       hideDialog: false
-    },
-
-
-    getServerConfig(){
-        let app = getApp();
-        API.get('user.serverConfig', {
-            platform: 'ios',
-            appversion: app.globalData.version
-        }).then(data=>{
-            if(data && data.data){
-                this.setData({
-                    headImage: data.data.newVerInviteBannerUrl
-                });
-            }
-        });
-    },
-    handleTabChange({detail}){
-        let {tab, index} = detail;
-        if(tab.data.length===0){
-            // this.getTabItemData(index);
-        }
-        this.setData({
-            'activeTabIndex': index
-        });
-        // console.log(index)
-    },
-    handleDoubtTap(){
-        wx.showModal({
-            content: '1、被邀请的好友自动加入你的团队成为你的队员\r\n2、队员每推广一单，您将额外获得此单收益的10%（您的等级越高，比例越高），队员的收益不受影响\r\n3、自2018年6月14日0点之后的订单才贡献团队收益',
-            showCancel: false
-        });
+       hideDialog: false,
+       atOnceGet: false,    // 立即领取
     },
 
     updateInfo(){
@@ -75,18 +46,21 @@ Page({
                     icon: 'success',
                     duration: 1500
                 });
-                setTimeout(function(){
-                    wx.switchTab({
-                        url: '/pages/user/user'
-                    })
-                }, 1500)
+        
             } else {
                 wx.showToast({
                     title: '你已经领取过，可不能贪心哟～',
                     icon: "none",
                     duration: 1500
                 }); 
+
             }
+
+            setTimeout(function(){
+                wx.switchTab({
+                    url: '/pages/user/user'
+                })
+            }, 1500)
            
         })
 
@@ -99,9 +73,17 @@ Page({
             wx.hideLoading();
     
             if(data.isSuccess === true){
+                let obj = data.data;
+                obj.usefulStartTime = obj.usefulStartTime.split(' ')[0]; //formatTime.formatTime(new Date(obj.usefulStartTime));
+                obj.usefulEndTime = obj.usefulEndTime.split(' ')[0]; //formatTime.formatTime(new Date(obj.usefulEndTime));
+
                 self.setData({
-                    couponObj: data.data
+                    couponObj: obj
                 });
+
+                if(self.data.atOnceGet){
+                    self.getCoupon();
+                }
                
             }
            
@@ -118,9 +100,11 @@ Page({
        
         // this.getInviteIncomeDetail();
         wx.hideShareMenu();
-        console.log(query.use)
+        
+        
         this.setData({
-            useBtn: (query.use === 'true' ? true : false)
+            useBtn: (query.use === 'true' ? true : false),
+            atOnceGet: (query.get === 'true' ? true : false)
         })
 
         autoLogin().then(data => {
@@ -136,7 +120,7 @@ Page({
     },
 
     gotoCode(){
-        router.routeTo('/pages/coupon/code/code');
+        router.routeTo('/pages/coupon/code/code?id=' + this.data.couponObj.id);
     },
 
     /**

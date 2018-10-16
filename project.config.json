@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -56,7 +56,26 @@
 				{
 					"id": -1,
 					"name": "verification-way",
-					"pathName": "pages/coupon/verification-way/verification-way"
+					"pathName": "pages/coupon/verification-way/verification-way",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "index_get",
+					"pathName": "pages/coupon/index",
+					"query": "id=0ffbd3ea-6e44-41d8-b040-6f7df801f424&use=false&get=true"
+				},
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/coupon/detail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/coupon/index",
+					"query": "id=0ffbd3ea-6e44-41d8-b040-6f7df801f424&use=false"
 				}
 			]
 		}

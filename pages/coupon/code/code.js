@@ -11,7 +11,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-       couponObj: {}
+       couponObj: {},
+       codeImg: ''
     },
 
 
@@ -64,7 +65,8 @@ Page({
     
             if(data.isSuccess === true){
                 self.setData({
-                    couponObj: data.data
+                    couponObj: data.data,
+                    codeImg: URL.coupon.code + data.data.id
                 });
                
             }

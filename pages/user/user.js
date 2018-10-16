@@ -7,6 +7,7 @@ import {parseWeChatQuery} from '../../common/utils.js';
 import PageEventFire from '../../common/pageEventFire.js';
 import storage from '../../common/storage.js';
 import {autoLogin} from '../../common/login.js';
+const formatTime = require('../../common/formatTime.js');
 Page({
 
     /**
@@ -69,7 +70,7 @@ Page({
     /**
      * 有效/过期/已使用
      */
-    getTabItemData(tabIndex){
+    getTabItemData(tabIndex, pullDown){
         let tab = this.data.tabs[tabIndex];
         let self = this;
         if(tab.loading) return Promise.resolve();
@@ -81,13 +82,15 @@ Page({
         } 
            
         tab.loading = true;
-        // console.log(param)
+        
         return ajax.request((URL.user.list), param, function(data){
             tab.loading = false;
-            // console.log(data);
+            if(pullDown){
+                wx.stopPullDownRefresh();
+            }
+
             let tmp = {},tabStr = `tabs[${tabIndex}]`;
-            // data[`${tabStr}.page`] = tab.page+1;
-            // data[`${tabStr}.data`] = tab.data.concat(data.data);
+            
             if(data.data.length<20){
                 data[`${tabStr}.isEnd`] = true;
                 self.setData({
@@ -95,14 +98,18 @@ Page({
                 });
 
             }
-            // this.setData(data);
+
+            let list = data.data;
+            list.forEach(item=>{
+                item.coupon.usefulEndTime = item.coupon.usefulEndTime.split(' ')[0]; // formatTime.formatTime(new Date(item.coupon.usefulEndTime));
+            });
+           
             
             self.setData({
                 [`tabs[${tabIndex}].page`]: tab.page+1,
-                [`tabs[${tabIndex}].data`]: tab.data.concat(data.data)
+                [`tabs[${tabIndex}].data`]: tab.data.concat(list)
             });
-            // console.log(tabIndex)
-            console.log(self.data.tabs)
+          
             return data.data;
         })
             
@@ -168,7 +175,12 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-      
+        this.setData({
+            [`tabs[${this.data.activeTabIndex}].data`]: [],
+            [`tabs[${this.data.activeTabIndex}].page`]: 0,
+            [`tabs[${this.data.activeTabIndex}].isEnd`]: false
+        });
+        this.getTabItemData(this.data.activeTabIndex,true);
     },
 
     /**

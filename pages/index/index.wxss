@@ -40,7 +40,7 @@ image{ display: block; }
 
 
 .box-item{
-  padding: 0 20rpx;
+  padding: 0 20rpx 20rpx 0;
 }
 
 .add-coupon-icon{

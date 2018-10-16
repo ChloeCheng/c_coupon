@@ -57,10 +57,10 @@ page{
   flex: 1;
 }
 .coupon-image{
-   margin-top: 30rpx;
    display: block;
-   height: 120rpx;
-   width: 120rpx;
+   height: 400rpx;
+   width: 60%;
+   margin: 30rpx auto 0 auto;
 }
 
 .coupon-detail-text{
@@ -104,7 +104,7 @@ page{
   border-radius: 20rpx;
   left:-10rpx;
   bottom: 10rpx;
-  background: #a64037;
+  background: #fd8b98;
   display: inline-block;
 
 }
@@ -117,6 +117,22 @@ page{
   border-radius: 20rpx;
   right:-10rpx;
   bottom: 10rpx;
-  background: #a64037;
+  background: #fd8b98;
   display: inline-block;
+}
+
+.coupon-id{
+   color:#222;
+   display: block;
+   text-align: center;
+   font-size: 30rpx;
+   margin-top: 20rpx;
+}
+
+.coupon-text{
+  color:#999;
+  display: block;
+  text-align: center;
+  font-size: 28rpx;
+  padding: 20rpx 0;
 }

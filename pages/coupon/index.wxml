@@ -1,21 +1,26 @@
 <!--index.wxml-->
 <view class="container">
    <view class="coupon-detail">
-        <text class="coupon-type">{{couponObj.couponItem}}</text>
-        <text class="coupon-title">{{couponObj.couponType}}</text>
+        <text class="coupon-type">{{couponObj.couponType}}</text>
+        <text class="coupon-title">{{couponObj.couponName}}</text>
         <view class="get-coupon" wx:if="{{!useBtn && couponObj.id}}" bindtap="getCoupon">领取</view>
         <view class="use-coupon" bindtap="gotoCode"  wx:if="{{useBtn}}">立即使用</view>
         <view class="coupon-use-time">
            <text>可用时间：</text>
            <text class="coupon-use-time-desc">
-              {{couponObj.usefulStartTime}} - {{couponObj.usefulEndTime}}
+              {{couponObj.usefulStartTime}} 至 {{couponObj.usefulEndTime}}
            </text>
         </view>
-        <image class="coupon-image" wx:if="{{couponObj.couponImgURL}}" src="https://z.mln.ren/upload/BigImage{{couponObj.couponImgURL}}" mode="widthFix"></image>
+        <image class="coupon-image" wx:if="{{couponObj.couponImgURL}}" src="https://z.mln.ren/upload/BigImage{{couponObj.couponImgURL}}" mode="aspectFit"></image>
         <!--view class="coupon-detail-text" bindtap="gotoDetail">
             <text>查看此优惠券详情</text>
             <view class="iconfont icon-left"></view>
         </view-->
+        <view class="item-desc">
+          <text>服务项目：{{couponObj.couponItem}}</text>
+          <text>适用地区：{{couponObj.usedRange}}</text>
+          <text>优惠券介绍：{{couponObj.couponDesc}}</text>
+        </view>
    </view>
  
 </view>

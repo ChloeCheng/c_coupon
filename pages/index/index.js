@@ -6,6 +6,7 @@ const router = require('../../common/router.js');
 import {parseWeChatQuery} from '../../common/utils.js';
 import PageEventFire from '../../common/pageEventFire.js';
 import {autoLogin} from '../../common/login.js';
+const formatTime = require('../../common/formatTime.js');
 Page({
 
     /**
@@ -17,32 +18,7 @@ Page({
         noData: false,
         dataResponse: false,
         list: [
-            /*{
-                childCouponItem:"免费券",
-                circulation:100,
-                couponCode:"0000001",
-                couponDesc:"洗车券",
-                couponImgURL:"/20180905/20180905142039205468789.jpg",
-                couponInnerCode:"0000001",
-                couponItem:"保养",
-                couponName:"西侧全",
-                couponType:"免费券",
-                createdBy:"e4ef5855-eef9-4f44-8139-bc97960305d2",
-                createdOn:"2018-09-05 14:20:26",
-                customerPayPrice:0,
-                expenseDesc:"好的",
-                id:"f82d98a6-16c0-46d2-bbe5-8165021b8889",
-                isAllWaiterShopUser:true,
-                isPublish:true,
-                lineNum:0,
-                modifiedBy:"e4ef5855-eef9-4f44-8139-bc97960305d2",
-                modifiedOn:"2018-09-05 14:49:42",
-                remarks:null,
-                settlementPrice:100,
-                usedRange:"上海",
-                usefulEndTime:"2018-09-26 00:00:00",
-                usefulStartTime:"2018-09-12 00:00:00"
-            }*/
+            
         ],
         tabs: [
             {name: '全部',id: 'ALL', data: [], pageStart: 0, isEnd: false, loading: false},
@@ -171,9 +147,14 @@ Page({
                         isEnd: true
                     }); 
                 }
+                let list = data.data;
+                list.forEach(item=>{
+                    item.usefulEndTime = item.usefulEndTime.split(' ')[0]; //formatTime.formatTime(new Date(item.usefulEndTime));
+                });
+
                 self.setData({
                     page: self.data.page + 1,
-                    list: self.data.list.concat(data.data)
+                    list: self.data.list.concat(list)
                 });
                return self.data.list;
             }
@@ -272,7 +253,7 @@ Page({
      */
     onShareAppMessage: function () {
         return {
-            imageUrl: 'https://a.vpimg3.com/upload/vtd/creatives/20180428/imageuploadrandom/1524888203054.jpg',
+            imageUrl: '../../assets/icons/img.png',
             title: '[有人@我]海量优惠券，了解下~',
             path: '/pages/index/index'
         }

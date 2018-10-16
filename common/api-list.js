@@ -7,6 +7,7 @@ let URL = {
         detail: 'https://z.mln.ren/api/coupon/front/detail/',
         get: 'https://z.mln.ren/api/couponGiveOutRecord/front/receive/',
         add: 'https://z.mln.ren/api/couponGiveOutRecord/front/inputcode/',
+        code: 'https://z.mln.ren/api/couponGiveOutRecord/front/generatecodeimg/',
     },
     user: {
         list: 'https://z.mln.ren/api/couponGiveOutRecord/front/mycouponrecord',
