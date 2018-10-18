@@ -9,6 +9,7 @@ Component({
             type: Object,
             value: {}
         },
+        
         noLink: {
             type: Boolean,
             value: false
@@ -19,6 +20,10 @@ Component({
             value: false
         },
         listId: {
+            type: String,
+            value: ''
+        },
+        code: {
             type: String,
             value: ''
         },
@@ -83,7 +88,7 @@ Component({
                 return
             }
             const {currentTarget:{dataset: {item}}} = e;
-            router.routeTo(`/pages/coupon/code/code?id=${item.id}&use=${this.data.gotoUse}`);
+            router.routeTo(`/pages/coupon/code/code?id=${item.id}&use=${this.data.gotoUse}&code=${this.data.code}`);
 
         }
     }

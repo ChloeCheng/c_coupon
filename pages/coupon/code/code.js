@@ -57,7 +57,7 @@ Page({
             }
         })
     },
-    getDetail(id){    
+    getDetail(id, code){    
         wx.showLoading();
         let self = this;
         return ajax.request((URL.coupon.detail + id), {}, function(data){
@@ -66,7 +66,8 @@ Page({
             if(data.isSuccess === true){
                 self.setData({
                     couponObj: data.data,
-                    codeImg: URL.coupon.code + data.data.id
+                    codeImg: URL.coupon.code + code,
+                    code: code.replace(/\s/g,'').replace(/(.{4})/g,"$1 ")
                 });
                
             }
@@ -80,7 +81,7 @@ Page({
     onLoad: function (options) {
         // this.getServerConfig(); 
         let query = parseWeChatQuery(options)
-        this.getDetail(query.id);
+        this.getDetail(query.id, query.code);
         // this.getInviteIncomeDetail();
         wx.hideShareMenu();
        

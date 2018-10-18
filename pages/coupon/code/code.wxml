@@ -7,7 +7,7 @@
          <text></text>
         </view>
         <image class="coupon-image" src="{{codeImg}}" mode="aspectFit"></image>
-        <text class="coupon-id">{{couponObj.id}}</text>
+        <text class="coupon-id">{{code}}</text>
         <text class="coupon-text">结账时请向收银员出示此二维码</text>
    </view>
  

@@ -8,7 +8,7 @@
             </view-->
             <!--template  wx:for="{{tab.data}}" wx:key="{{index}}" is="couponItem" data="{{item}}"></template-->
            <block wx:for="{{tab.data}}"  wx:key="index">
-              <item item="{{item.coupon}}" no-link="{{tab.status === 0 ? false : true}}" goto-use="true" list-id="{{tab.id}}"></item>
+              <item item="{{item.coupon}}" no-link="{{tab.status === 0 ? false : true}}" goto-use="true" list-id="{{tab.id}}" code="{{item.recordCode}}"></item>
             </block>
         </view>      
     </union-swiper-tab>
