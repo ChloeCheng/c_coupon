@@ -18,6 +18,7 @@ Page({
        couponObj: {},   // 券详情
        hideDialog: false,
        atOnceGet: false,    // 立即领取
+       code: ''
     },
 
     updateInfo(){
@@ -104,7 +105,8 @@ Page({
         
         this.setData({
             useBtn: (query.use === 'true' ? true : false),
-            atOnceGet: (query.get === 'true' ? true : false)
+            atOnceGet: (query.get === 'true' ? true : false),
+            code: query.code
         })
 
         autoLogin().then(data => {
@@ -120,7 +122,7 @@ Page({
     },
 
     gotoCode(){
-        router.routeTo('/pages/coupon/code/code?id=' + this.data.couponObj.id);
+        router.routeTo('/pages/coupon/code/code?id=' + this.data.couponObj.id + '&code=' + this.data.code);
     },
 
     /**

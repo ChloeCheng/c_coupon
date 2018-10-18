@@ -78,7 +78,7 @@ Component({
             }
             const {currentTarget:{dataset: {item}}} = e;
             
-            router.routeTo(`/pages/coupon/index?id=${item.id}&use=${this.data.gotoUse}`);
+            router.routeTo(`/pages/coupon/index?id=${item.id}&use=${this.data.gotoUse}&code=${this.data.code}`);
 
             
         },
