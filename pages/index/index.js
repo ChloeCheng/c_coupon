@@ -134,8 +134,10 @@ Page({
 
     getList(pullDown){
         let param = `?page=${this.data.page+1}&limit=20${this.data.itemArrayIndex > 0 ? ('&couponitem=' + this.data.itemArray[this.data.itemArrayIndex]) : ''}`;
-        wx.showLoading();
+       
         let self = this;
+        if(self.data.isEnd) return;
+        wx.showLoading();
         return ajax.request((URL.index.list + param), {}, function(data){
             wx.hideLoading();
             if(pullDown){
@@ -198,7 +200,12 @@ Page({
      */
     onShow: function () {
        this.setData({
-           hideDialog: getApp().globalData.authSettingUserInfo
+           hideDialog: getApp().globalData.authSettingUserInfo,
+           itemArrayIndex: 0,
+            typeArrayIndex: 0,
+            page: 0,
+            list: [],
+            isEnd:false
        })
         autoLogin().then(data => {
             if(data.login) {
@@ -236,7 +243,8 @@ Page({
             itemArrayIndex: 0,
             typeArrayIndex: 0,
             page: 0,
-            list: []
+            list: [],
+            isEnd:false
         });
         this.getList(true);
     },
