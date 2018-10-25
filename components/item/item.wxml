@@ -20,12 +20,12 @@
             </view>
         </view>
         <!--image class='coupon-item-line' src='/assets/icons/coupon-gap.png' mode='widthFix'></image-->
-        <view wx:if="{{!gotoUse}}" class="coupon-item-right {{item.circulation==0 ? 'disable-share' :''}}">
-            <text>剩余{{item.circulation}}张</text>
-            <view wx:if="{{item.circulation==0}}" class="coupon-item-right-share">
+        <view wx:if="{{!gotoUse}}" class="coupon-item-right {{item.residueCount==0 ? 'disable-share' :''}}">
+            <text>剩余{{item.residueCount}}张</text>
+            <view wx:if="{{item.residueCount==0}}" class="coupon-item-right-share">
                已抢光
             </view>
-            <view  wx:if="{{item.circulation > 0}}" class="coupon-item-right-share" bindtap="shareCoupon" data-item="{{item}}">领取</view>
+            <view  wx:if="{{item.residueCount > 0}}" class="coupon-item-right-share" bindtap="shareCoupon" data-item="{{item}}">领取</view>
         </view>
 
         <view wx:if="{{gotoUse && !noLink}}" class="coupon-item-right" catchtap="gotoUse" data-item="{{item}}">
